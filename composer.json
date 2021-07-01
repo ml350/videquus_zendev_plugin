@@ -1,0 +1,17 @@
+{
+    "name": "zendev_plugin/zendev_plugin",
+    "description": "ZenDev plugin for videqqus needs",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Emel Rizvanović",
+            "email": "emel@zendev.se"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"ZENDEVPLUGIN\\": "./inc"}
+    }
+}
