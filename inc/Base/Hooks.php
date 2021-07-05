@@ -32,6 +32,9 @@ class Hooks {
         // after subscription is created, switch it's status to pending
         add_action( 'woocommerce_payment_complete', array('\ZENDEVPLUGIN\Base\ZenDevActions', 'update_subscription_onhold'), 10,1 );
 
+        // active subscription on renewal payment
+        add_action( 'woocommerce_scheduled_subscription_payment', array('\ZENDEVPLUGIN\Base\ZenDevActions', 'renewal_update_subscription_onhold'), 10,1 );
+
         // get camera id to display it on my account page
         //add_action('woocommerce_account_content', array('\ZENDEVPLUGIN\Base\ZenDevActions', 'get_camera_id'), 10,0 );
         

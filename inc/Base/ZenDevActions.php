@@ -330,8 +330,8 @@ class ZenDevActions {
     public static function update_subscription_onhold( $order_id ) 
     {  
         $order = wc_get_order($order_id);   // Order Object     
-        $subscriptions = wcs_get_subscriptions_for_order( $order_id, array('order_type' => 'any') );
-
+        $subscriptions = wcs_get_subscriptions_for_order( $order_id, array('order_type' => 'parent') );
+        
         $items = $order->get_items();
         $item_key = ''; // item metadata key, if it's empty it's switching subscription
 
@@ -342,7 +342,7 @@ class ZenDevActions {
         }
 
         foreach( $subscriptions as $subscription_id => $subscription ){
-            self::log_value($subscription->order_type);
+            //self::log_value($subscription->order_type);
             if(empty($item_key))
             { 
                 $note = ! empty( $note ) ? $note : __( 'Subscription updated on-hold until activated.' ); 
@@ -356,6 +356,14 @@ class ZenDevActions {
         } 
     }
 
+    // On renewal process update subscription to the active
+    public static function renewal_update_subscription_onhold( $order_id ) 
+    {  
+        $order = wc_get_order($order_id);   // Order Object 
+        $note = "Subscription status update to active on completed renewal process.";
+        $order->update_status( 'active', $note, true );  
+    }
+    
     // get camera status 
     public static function get_camera_data( $order_id )
     {
